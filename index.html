@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafiz Ahmad Fauzi — Game Artist Portofolio</title>
+  <meta name="description" content="Portofolio Hafiz Ahmad Fauzi — 2D & Pixel Artist, UI Artist, dan Background Artist. Kumpulan proyek game pixel art, antarmuka sci-fi, dan ilustrasi lingkungan.">
+
+  <!-- Google Fonts: Poppins (fallback to system sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Progressive enhancement: enable JS-only animations/carousel only if JS runs -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Langsung ke konten utama</a>
+
+  <!-- =====================================================================
+       FIXED NAVIGATION BAR
+       ===================================================================== -->
+  <header class="site-header">
+    <nav class="pill-nav" aria-label="Navigasi utama">
+      <a class="nav-brand" href="#home">Hafiz</a>
+      <ul class="nav-links">
+        <li><a class="nav-link is-active" href="#home" data-nav="home">Home</a></li>
+        <li><a class="nav-link" href="#about" data-nav="about">About</a></li>
+        <li><a class="nav-link" href="#portofolio" data-nav="portofolio">Portofolio</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- ===================================================================
+         HERO SECTION (#home)
+         =================================================================== -->
+    <section id="home" class="hero-section" aria-label="Beranda">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <div class="hero-center">
+          <h1 class="sr-only">Portofolio Hafiz Ahmad Fauzi — Game Artist</h1>
+          <img
+            class="hero-title-art"
+            src="assets/asset/portofolio.png"
+            alt="PORTfolio"
+            width="2032"
+            height="984"
+          >
+        </div>
+
+        <a class="scroll-cue" href="#about">
+          <span>Scroll Down</span>
+          <span class="scroll-arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ABOUT SECTION (#about)
+         =================================================================== -->
+    <section id="about" class="about-section" aria-labelledby="about-heading">
+      <!-- Layered scenery backgrounds: cloud reflection -> hill without flowers -> hill with flowers -->
+      <div class="about-scenery" aria-hidden="true">
+        <div class="scenery-reflection" data-parallax="0.06"></div>
+        <div class="scenery-hill-back" data-parallax="0.03"></div>
+        <div class="scenery-hill-front" data-parallax="0.015"></div>
+      </div>
+
+      <div class="container about-grid">
+        <div class="about-content reveal-group">
+          <h2 id="about-heading" class="about-heading reveal-item">About me</h2>
+          <p class="about-text reveal-item">
+            Halo, saya <strong>Hafiz Ahmad Fauzi</strong> — seorang <strong>2D &amp; Pixel Artist</strong> sekaligus
+            mahasiswa Teknologi Game di PENS. Saya fokus menciptakan aset UI game, environment, karakter, dan
+            animasi, serta memiliki pemahaman di bidang <em>Level Design dan Game Lore</em>. Saat ini terbuka untuk
+            peluang magang sebagai 2D/Pixel Artist di studio game profesional untuk terus berkembang bersama tim.
+          </p>
+          <div class="about-actions reveal-item">
+            <a
+              class="btn-resume"
+              href="https://drive.google.com/file/d/1tmyQcLQ7_gPR29AnqkPEf9C_aGnjt0uY/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
+          </div>
+        </div>
+
+        <div class="about-portrait-wrap reveal-group">
+          <div class="portrait-halo reveal-item">
+            <div class="portrait-circle">
+              <img
+                class="portrait-img"
+                src="assets/asset/Profile.png"
+                alt="Foto profil Hafiz Ahmad Fauzi"
+                width="977"
+                height="1280"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark bush transition edge between hill and dark-green body -->
+      <div class="bush-divider bush-divider--top" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===================================================================
+         PORTOFOLIO & PROJECT SHOWCASE BODY
+         =================================================================== -->
+    <div class="portfolio-body">
+      <!-- -----------------------------------------------------------------
+           CURVED INFINITE CAROUSEL (#portofolio)
+           ----------------------------------------------------------------- -->
+      <section id="portofolio" class="carousel-section" aria-labelledby="portofolio-heading">
+        <div class="reveal-group">
+          <h2 id="portofolio-heading" class="section-main-title reveal-item">Portofolio</h2>
+        </div>
+
+        <div
+          class="carousel-viewport"
+          id="portfolio-carousel"
+          role="region"
+          aria-label="Galeri proyek game interaktif"
+          tabindex="0"
+        >
+          <div class="carousel-track" id="carousel-track">
+            <!-- Set 1 (primary interactive cards) -->
+            <a class="carousel-card" href="#project-01" data-project-target="project-01" aria-label="Lihat proyek 01 Altalis" draggable="false">
+              <img src="assets/photo/Altalis1.png" alt="Layar judul game Altalis" width="640" height="359" draggable="false" loading="lazy">
+            </a>
+            <a class="carousel-card" href="#project-02" data-project-target="project-02" aria-label="Lihat proyek 02 Sector 67" draggable="false">
+              <img src="assets/photo/Sector67_1.png" alt="Cuplikan game Sector 67" width="640" height="359" draggable="false" loading="lazy">
+            </a>
+            <a class="carousel-card" href="#project-03" data-project-target="project-03" aria-label="Lihat proyek 03 Eden Farm" draggable="false">
+              <img src="assets/photo/EdenFarm1.png" alt="Layar judul game Eden Farm" width="640" height="361" draggable="false" loading="lazy">
+            </a>
+            <a class="carousel-card" href="#project-04" data-project-target="project-04" aria-label="Lihat proyek 04 Fiz Catcher" draggable="false">
+              <img src="assets/photo/FizCatcher1.png" alt="Layar menu game Fiz Catcher" width="640" height="360" draggable="false" loading="lazy">
+            </a>
+            <a class="carousel-card" href="#project-05" data-project-target="project-05" aria-label="Lihat proyek 05 Crabfish Torpedo" draggable="false">
+              <img src="assets/photo/Crabfish1.png" alt="Layar judul game Crabfish Torpedo" width="640" height="358" draggable="false" loading="lazy">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- -----------------------------------------------------------------
+           PROJECT 01: ALTALIS (Text Left, Media Right)
+           ----------------------------------------------------------------- -->
+      <article id="project-01" class="project-section project-section--media-right" aria-labelledby="project-01-title">
+        <div class="project-deco-rachel" aria-hidden="true">
+          <img src="assets/asset/Rachel%20Idle.gif" alt="" width="600" height="600" loading="lazy">
+        </div>
+
+        <div class="container project-grid">
+          <div class="project-info reveal-group">
+            <span class="project-num reveal-item" aria-hidden="true">01</span>
+            <p class="project-label reveal-item">
+              <span class="label-line" aria-hidden="true"></span>
+              <span>PROJECT FIZ STUDIO</span>
+            </p>
+            <h3 id="project-01-title" class="project-title reveal-item">Altalis</h3>
+            <p class="project-desc reveal-item">
+              Proyek game <em>pixel art</em> di mana saya merancang desain karakter NPC 'Rachel' dengan
+              <em>sprite sheet</em> animasi dasarnya (<em>Idle</em>, <em>Dash</em>, <em>Dead</em>) serta aset UI game.
+              Selain fokus pada visual, saya juga menyusun <em>level design</em>, meracik <em>lore</em> untuk
+              memperkuat <em>world-building</em>, dan mengolah efek suara (SFX) menggunakan Audacity.
+            </p>
+            <div class="project-meta-row reveal-item">
+              <a
+                class="yellow-link"
+                href="https://drive.google.com/file/d/13ls7u40ym7L25jFgKDuXAPQoaddaqIId/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Full Assets
+              </a>
+              <span class="project-role">Role: 2D/Pixel Artist • Game Designer • SFX Editing</span>
+            </div>
+          </div>
+
+          <div class="project-media reveal-group">
+            <div class="video-frame reveal-item">
+              <video
+                class="project-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/photo/Altalis1.png"
+                aria-label="Cuplikan gameplay Altalis"
+              >
+                <source src="assets/footage/footage_altalis.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="thumb-grid reveal-item">
+              <button type="button" class="thumb-btn" data-lightbox-group="altalis" data-lightbox-src="assets/photo/Altalis1.png" data-lightbox-alt="Tangkapan layar judul dan karakter Altalis" aria-label="Perbesar tangkapan layar Altalis 1">
+                <img src="assets/photo/Altalis1.png" alt="Tangkapan layar judul dan karakter Altalis" width="640" height="359" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="altalis" data-lightbox-src="assets/photo/Altalis2.png" data-lightbox-alt="Tangkapan layar dialog dan antarmuka Altalis" aria-label="Perbesar tangkapan layar Altalis 2">
+                <img src="assets/photo/Altalis2.png" alt="Tangkapan layar dialog dan antarmuka Altalis" width="640" height="359" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="altalis" data-lightbox-src="assets/photo/Altalis3.png" data-lightbox-alt="Tangkapan layar eksplorasi level pixel art Altalis" aria-label="Perbesar tangkapan layar Altalis 3">
+                <img src="assets/photo/Altalis3.png" alt="Tangkapan layar eksplorasi level pixel art Altalis" width="640" height="359" loading="lazy">
+              </button>
+            </div>
+
+            <div class="media-footer-link reveal-item">
+              <a
+                class="yellow-link"
+                href="https://store.steampowered.com/app/4696840/Altalis_Demo/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play Demo On Steam
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- -----------------------------------------------------------------
+           PROJECT 02: SECTOR 67 (Media Left, Text Right)
+           ----------------------------------------------------------------- -->
+      <article id="project-02" class="project-section project-section--media-left" aria-labelledby="project-02-title">
+        <div class="project-deco-station" aria-hidden="true">
+          <img src="assets/asset/Space%20Station1Tr.png" alt="" width="702" height="1080" loading="lazy">
+        </div>
+
+        <div class="container project-grid">
+          <div class="project-info reveal-group">
+            <span class="project-num reveal-item" aria-hidden="true">02</span>
+            <p class="project-label reveal-item">
+              <span class="label-line" aria-hidden="true"></span>
+              <span>PROJECT KAMPUS</span>
+            </p>
+            <h3 id="project-02-title" class="project-title reveal-item">Sector 67</h3>
+            <p class="project-desc reveal-item">
+              Game bertema luar angkasa di mana saya bertanggung jawab merancang seluruh antarmuka (UI) bergaya
+              <em>sci-fi</em>, mencakup <em>Main Menu</em>, <em>Pause</em>, <em>Inventory</em>, <em>Objective</em>,
+              hingga layar <em>Game Over</em>. Selain mengerjakan UI, saya juga membuat aset 3D berupa stasiun luar
+              angkasa sebagai objek visual utama di dalam game.
+            </p>
+            <div class="project-meta-row reveal-item">
+              <a
+                class="yellow-link"
+                href="https://drive.google.com/file/d/13ls7u40ym7L25jFgKDuXAPQoaddaqIId/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Full Assets
+              </a>
+              <span class="project-role">Role: UI Artist • 3D Artist</span>
+            </div>
+          </div>
+
+          <div class="project-media reveal-group">
+            <div class="video-frame reveal-item">
+              <video
+                class="project-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/photo/Sector67_1.png"
+                aria-label="Cuplikan gameplay Sector 67"
+              >
+                <source src="assets/footage/footageSector67.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="thumb-grid reveal-item">
+              <button type="button" class="thumb-btn" data-lightbox-group="sector67" data-lightbox-src="assets/photo/Sector67_1.png" data-lightbox-alt="Tangkapan layar antarmuka sci-fi Sector 67" aria-label="Perbesar tangkapan layar Sector 67 1">
+                <img src="assets/photo/Sector67_1.png" alt="Tangkapan layar antarmuka sci-fi Sector 67" width="640" height="359" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="sector67" data-lightbox-src="assets/photo/Sector67_2.png" data-lightbox-alt="Tangkapan layar pertempuran luar angkasa Sector 67" aria-label="Perbesar tangkapan layar Sector 67 2">
+                <img src="assets/photo/Sector67_2.png" alt="Tangkapan layar pertempuran luar angkasa Sector 67" width="642" height="359" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="sector67" data-lightbox-src="assets/photo/Sector67_3.png" data-lightbox-alt="Tangkapan layar HUD dan stasiun luar angkasa Sector 67" aria-label="Perbesar tangkapan layar Sector 67 3">
+                <img src="assets/photo/Sector67_3.png" alt="Tangkapan layar HUD dan stasiun luar angkasa Sector 67" width="640" height="361" loading="lazy">
+              </button>
+            </div>
+
+            <div class="media-footer-link reveal-item">
+              <a
+                class="yellow-link"
+                href="https://aflah-tukang-ketik-ketik.itch.io/sector-67"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play On Itch.io
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- -----------------------------------------------------------------
+           PROJECT 03: EDEN FARM (Text Left, Media Right + Bird & Hand GIFs)
+           ----------------------------------------------------------------- -->
+      <article id="project-03" class="project-section project-section--media-right" aria-labelledby="project-03-title">
+        <div class="container project-grid">
+          <div class="project-info reveal-group">
+            <span class="project-num reveal-item" aria-hidden="true">03</span>
+            <p class="project-label reveal-item">
+              <span class="label-line" aria-hidden="true"></span>
+              <span>PROJECT KAMPUS</span>
+            </p>
+            <h3 id="project-03-title" class="project-title reveal-item">Eden Farm</h3>
+            <p class="project-desc reveal-item">
+              Game simulasi pertanian 2D <em>top-down</em> bergaya <em>pixel art</em>. Kontribusi saya berfokus pada
+              perancangan seluruh aset UI—mulai dari panel inventaris, kotak dialog, kursor, logo, hingga layar
+              <em>Win/Game Over</em>—serta menggambar ilustrasi <em>background</em> langit untuk membangun atmosfer
+              permainan.
+            </p>
+            <div class="project-meta-row reveal-item">
+              <a
+                class="yellow-link"
+                href="https://drive.google.com/file/d/13ls7u40ym7L25jFgKDuXAPQoaddaqIId/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Full Assets
+              </a>
+              <span class="project-role">Role: UI Artist • Background Artist</span>
+            </div>
+          </div>
+
+          <div class="project-media reveal-group">
+            <!-- Wrapper without overflow:hidden so birds can overlap corners cleanly -->
+            <div class="video-stage reveal-item">
+              <div class="video-frame">
+                <video
+                  class="project-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster="assets/photo/EdenFarm1.png"
+                  aria-label="Cuplikan gameplay Eden Farm"
+                >
+                  <source src="assets/footage/footage_EdenFarm.mp4" type="video/mp4">
+                </video>
+              </div>
+
+              <!-- Pointing hand GIF laid over the lower-right area of the video -->
+              <img
+                class="eden-hand-gif"
+                src="assets/asset/kursor.gif"
+                alt=""
+                aria-hidden="true"
+                width="640"
+                height="640"
+                loading="lazy"
+              >
+
+              <!-- Two animated birds perched on the top-left and bottom-right corners -->
+              <img
+                class="eden-bird eden-bird--tl"
+                src="assets/asset/Burung.gif"
+                alt=""
+                aria-hidden="true"
+                width="320"
+                height="320"
+                loading="lazy"
+              >
+              <img
+                class="eden-bird eden-bird--br"
+                src="assets/asset/Burung.gif"
+                alt=""
+                aria-hidden="true"
+                width="320"
+                height="320"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="thumb-grid reveal-item">
+              <button type="button" class="thumb-btn" data-lightbox-group="edenfarm" data-lightbox-src="assets/photo/EdenFarm1.png" data-lightbox-alt="Layar menu utama Eden Farm dengan ilustrasi langit" aria-label="Perbesar tangkapan layar Eden Farm 1">
+                <img src="assets/photo/EdenFarm1.png" alt="Layar menu utama Eden Farm dengan ilustrasi langit" width="640" height="361" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="edenfarm" data-lightbox-src="assets/photo/EdenFarm2.png" data-lightbox-alt="Tangkapan layar panel toko dan UI pixel art Eden Farm" aria-label="Perbesar tangkapan layar Eden Farm 2">
+                <img src="assets/photo/EdenFarm2.png" alt="Tangkapan layar panel toko dan UI pixel art Eden Farm" width="640" height="360" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="edenfarm" data-lightbox-src="assets/photo/EdenFarm3.png" data-lightbox-alt="Tangkapan layar gameplay pertanian top-down Eden Farm" aria-label="Perbesar tangkapan layar Eden Farm 3">
+                <img src="assets/photo/EdenFarm3.png" alt="Tangkapan layar gameplay pertanian top-down Eden Farm" width="640" height="359" loading="lazy">
+              </button>
+            </div>
+
+            <div class="media-footer-link reveal-item">
+              <a
+                class="yellow-link"
+                href="https://hafizafauzi.itch.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play On Itch.io
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- -----------------------------------------------------------------
+           PROJECT 04: FIZ CATCHER (Media Left, Text Right + Bush Borders)
+           ----------------------------------------------------------------- -->
+      <article id="project-04" class="project-section project-section--media-left project-section--bushes" aria-labelledby="project-04-title">
+        <div class="bush-band bush-band--top" aria-hidden="true"></div>
+
+        <div class="container project-grid">
+          <div class="project-info reveal-group">
+            <span class="project-num reveal-item" aria-hidden="true">04</span>
+            <p class="project-label reveal-item">
+              <span class="label-line" aria-hidden="true"></span>
+              <span>GIMERSIA</span>
+            </p>
+            <h3 id="project-04-title" class="project-title reveal-item">Fiz Catcher</h3>
+            <p class="project-desc reveal-item">
+              Proyek game <em>multiplayer</em> kejar-kejaran di mana saya merancang penuh seluruh elemen UI, mulai dari
+              <em>Main Menu</em>, <em>Player Connection</em>, <em>Pause Menu</em>, hingga layar <em>Win/Lose</em>. Selain
+              antarmuka, saya juga menggambar ilustrasi <em>background</em> padang rumput dan langit biru untuk
+              menghidupkan nuansa visual tempat empat pemain bekerja sama menangkap Fiz.
+            </p>
+            <div class="project-meta-row reveal-item">
+              <a
+                class="yellow-link"
+                href="https://drive.google.com/file/d/13ls7u40ym7L25jFgKDuXAPQoaddaqIId/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Full Assets
+              </a>
+              <span class="project-role">Role: UI Artist • Background Artist</span>
+            </div>
+          </div>
+
+          <div class="project-media reveal-group">
+            <div class="video-frame reveal-item">
+              <video
+                class="project-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/photo/FizCatcher1.png"
+                aria-label="Cuplikan gameplay Fiz Catcher"
+              >
+                <source src="assets/footage/footageFizCatcher.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="thumb-grid reveal-item">
+              <button type="button" class="thumb-btn" data-lightbox-group="fizcatcher" data-lightbox-src="assets/photo/FizCatcher1.png" data-lightbox-alt="Layar menu utama Fiz Catcher" aria-label="Perbesar tangkapan layar Fiz Catcher 1">
+                <img src="assets/photo/FizCatcher1.png" alt="Layar menu utama Fiz Catcher" width="640" height="360" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="fizcatcher" data-lightbox-src="assets/photo/FizCatcher2.png" data-lightbox-alt="Layar koneksi empat pemain Fiz Catcher" aria-label="Perbesar tangkapan layar Fiz Catcher 2">
+                <img src="assets/photo/FizCatcher2.png" alt="Layar koneksi empat pemain Fiz Catcher" width="642" height="362" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="fizcatcher" data-lightbox-src="assets/photo/FizCatcher3.png" data-lightbox-alt="Arena gameplay padang rumput dan langit biru Fiz Catcher" aria-label="Perbesar tangkapan layar Fiz Catcher 3">
+                <img src="assets/photo/FizCatcher3.png" alt="Arena gameplay padang rumput dan langit biru Fiz Catcher" width="640" height="361" loading="lazy">
+              </button>
+            </div>
+
+            <div class="media-footer-link reveal-item">
+              <a
+                class="yellow-link"
+                href="https://fiz-studio.itch.io/fiz-catcher"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play On Itch.io
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bush-band bush-band--bottom" aria-hidden="true"></div>
+      </article>
+
+      <!-- -----------------------------------------------------------------
+           PROJECT 05: CRABFISH TORPEDO (Text Left, Media Right + Crystals)
+           ----------------------------------------------------------------- -->
+      <article id="project-05" class="project-section project-section--media-right project-section--crystals" aria-labelledby="project-05-title">
+        <div class="container project-grid">
+          <div class="project-info reveal-group">
+            <span class="project-num reveal-item" aria-hidden="true">05</span>
+            <p class="project-label reveal-item">
+              <span class="label-line" aria-hidden="true"></span>
+              <span>GAMEJAM PLUS</span>
+            </p>
+            <h3 id="project-05-title" class="project-title reveal-item">Crabfish Torpedo</h3>
+            <p class="project-desc reveal-item">
+              Proyek <em>GameJam Plus</em> bertema bawah laut di mana saya berperan sebagai <em>Background Artist</em>.
+              Saya menggambar aset lingkungan bawah laut beserta detail terumbu karang dan elemen polusi laut yang
+              dipisahkan ke dalam beberapa <em>layer</em> untuk menciptakan kedalaman visual (<em>parallax</em>).
+            </p>
+            <div class="project-meta-row reveal-item">
+              <a
+                class="yellow-link"
+                href="https://drive.google.com/file/d/13ls7u40ym7L25jFgKDuXAPQoaddaqIId/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Full Assets
+              </a>
+              <span class="project-role">Role: Background Artist</span>
+            </div>
+          </div>
+
+          <div class="project-media reveal-group">
+            <div class="video-frame reveal-item">
+              <video
+                class="project-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/photo/Crabfish1.png"
+                aria-label="Cuplikan gameplay Crabfish Torpedo"
+              >
+                <source src="assets/footage/footage_crabfish.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="thumb-grid reveal-item">
+              <button type="button" class="thumb-btn" data-lightbox-group="crabfish" data-lightbox-src="assets/photo/Crabfish1.png" data-lightbox-alt="Layar judul game bawah laut Crabfish Torpedo" aria-label="Perbesar tangkapan layar Crabfish Torpedo 1">
+                <img src="assets/photo/Crabfish1.png" alt="Layar judul game bawah laut Crabfish Torpedo" width="640" height="358" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="crabfish" data-lightbox-src="assets/photo/Crabfish2.png" data-lightbox-alt="Latar terumbu karang dan kedalaman laut Crabfish Torpedo" aria-label="Perbesar tangkapan layar Crabfish Torpedo 2">
+                <img src="assets/photo/Crabfish2.png" alt="Latar terumbu karang dan kedalaman laut Crabfish Torpedo" width="640" height="417" loading="lazy">
+              </button>
+              <button type="button" class="thumb-btn" data-lightbox-group="crabfish" data-lightbox-src="assets/photo/Crabfish3.png" data-lightbox-alt="Antarmuka menu dan aset lingkungan Crabfish Torpedo" aria-label="Perbesar tangkapan layar Crabfish Torpedo 3">
+                <img src="assets/photo/Crabfish3.png" alt="Antarmuka menu dan aset lingkungan Crabfish Torpedo" width="640" height="399" loading="lazy">
+              </button>
+            </div>
+
+            <div class="media-footer-link reveal-item">
+              <a
+                class="yellow-link"
+                href="https://ginzax.itch.io/crabfish-torpedo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play On Itch.io
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layered cyan crystal rocks along the bottom of Crabfish Torpedo -->
+        <div class="crystal-layers" aria-hidden="true">
+          <div class="crystal-back" data-parallax="0.03"></div>
+          <div class="crystal-front" data-parallax="0.015"></div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- =====================================================================
+       FOOTER
+       ===================================================================== -->
+  <footer class="site-footer">
+    <!-- Purple rock band forming the top edge of the footer -->
+    <div class="footer-rocks" aria-hidden="true"></div>
+
+    <div class="footer-inner container reveal-group">
+      <h2 class="footer-title reveal-item">Thank You</h2>
+      <p class="footer-subtitle reveal-item">Lets Connect there</p>
+
+      <div class="footer-divider reveal-item" aria-hidden="true"></div>
+
+      <ul class="footer-contacts reveal-item">
+        <li>
+          <a href="https://api.whatsapp.com/send/?phone=62859106513708&text&type=phone_number&app_absent=0">+62 859-1065-13708</a>
+        </li>
+        <li>
+          <a href="mailto:hafizafauzi77@gmail.com">hafizafauzi77@gmail.com</a>
+        </li>
+        <li>
+          <a
+            href="https://drive.google.com/file/d/1tmyQcLQ7_gPR29AnqkPEf9C_aGnjt0uY/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Portofolio.pdf
+          </a>
+        </li>
+      </ul>
+
+      <ul class="social-list reveal-item" aria-label="Media sosial">
+        <li>
+          <a
+            class="social-btn"
+            href="https://www.instagram.com/hafizfauzi_ce/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Hafiz Ahmad Fauzi"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5" ry="5"></rect>
+              <circle cx="12" cy="12" r="4.2"></circle>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            class="social-btn"
+            href="https://www.linkedin.com/in/hafiz-ahmad-fauzi-09aaa8294?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Hafiz Ahmad Fauzi"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <path d="M6.94 8.5H3.56V19.5H6.94V8.5ZM5.25 3.5C4.14 3.5 3.25 4.39 3.25 5.5C3.25 6.6 4.14 7.5 5.25 7.5C6.35 7.5 7.25 6.6 7.25 5.5C7.25 4.39 6.35 3.5 5.25 3.5ZM20.44 13.02C20.44 9.88 18.76 8.2 16.16 8.2C14.37 8.2 13.48 9.18 13.02 9.91V8.5H9.65C9.7 9.48 9.65 19.5 9.65 19.5H13.02V13.36C13.02 13.02 13.05 12.69 13.15 12.45C13.42 11.78 14.03 11.09 15.07 11.09C16.41 11.09 17.07 12.11 17.07 13.6V19.5H20.44V13.02Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            class="social-btn"
+            href="https://hafizafauzi.itch.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Profil itch.io Hafiz Ahmad Fauzi"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <path d="M4.2 5.2C3.1 5.9 2 7.8 2 9.4C2 10.6 2.9 11.5 4 11.5C5 11.5 5.8 10.8 6 9.9C6.2 10.8 7 11.5 8 11.5C9 11.5 9.8 10.8 10 9.9C10.2 10.8 11 11.5 12 11.5C13 11.5 13.8 10.8 14 9.9C14.2 10.8 15 11.5 16 11.5C17 11.5 17.8 10.8 18 9.9C18.2 10.8 19 11.5 20 11.5C21.1 11.5 22 10.6 22 9.4C22 7.8 20.9 5.9 19.8 5.2C18.3 4.6 15.3 4.5 12 4.5C8.7 4.5 5.7 4.6 4.2 5.2ZM3.7 12.8V17.4C3.7 18.7 4.7 19.6 6 19.6H18C19.3 19.6 20.3 18.7 20.3 17.4V12.8C19.6 13.1 18.8 13.2 18 12.8C17.2 13.2 16.3 13.2 15.5 12.8C14.7 13.2 13.8 13.2 13 12.8C12.3 13.1 11.7 13.1 11 12.8C10.2 13.2 9.3 13.2 8.5 12.8C7.7 13.2 6.8 13.2 6 12.8C5.2 13.2 4.4 13.1 3.7 12.8ZM9.2 14.3L11 16.1H13L14.8 14.3L16.3 15.8L14.8 17.9H13L12 16.7L11 17.9H9.2L7.7 15.8L9.2 14.3Z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       LIGHTBOX MODAL FOR PROJECT SCREENSHOTS
+       ===================================================================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" hidden>
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+    <div class="lightbox-panel">
+      <button type="button" class="lightbox-close" data-lightbox-close aria-label="Tutup pratinjau gambar">×</button>
+      <button type="button" class="lightbox-nav lightbox-nav--prev" id="lightbox-prev" aria-label="Gambar sebelumnya">‹</button>
+      <figure class="lightbox-figure">
+        <img id="lightbox-img" src="" alt="">
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+      <button type="button" class="lightbox-nav lightbox-nav--next" id="lightbox-next" aria-label="Gambar berikutnya">›</button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

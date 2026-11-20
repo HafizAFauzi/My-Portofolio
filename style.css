@@ -1,0 +1,1438 @@
+/* ==========================================================================
+   HAFIZ AHMAD FAUZI — GAME ARTIST PORTFOLIO
+   Plain CSS3 with Custom Properties, Fluid Layout, & Progressive Enhancement
+   ========================================================================== */
+
+:root {
+  /* Palette (sampled from background & asset layers for seamless blending) */
+  --color-sky-top: #90cbe6;
+  --color-sky-bottom: #dbeae7;
+  --color-reflection-mid: #b8dce6;
+  --color-reflection-bot: #8ecce6;
+  --color-hill-green: #88a04a;
+  --color-bush-dark: #142c00;
+  --color-body-green: #2e530d;
+  --color-footer-green: #152c00;
+
+  --color-ink: #132108;
+  --color-ink-soft: #263b14;
+  --color-cream: #f7f5e8;
+  --color-cream-muted: rgba(247, 245, 232, 0.86);
+  --color-yellow: #f2df74;
+  --color-yellow-bright: #ffe97d;
+  --color-resume-bg: #996336;
+  --color-resume-hover: #b27542;
+  --color-halo: #a9db4f;
+  --color-nav-bg: #0c0e0a;
+
+  /* Typography */
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Fluid Spacing & Container */
+  --container-max: 1180px;
+  --container-pad: clamp(1.1rem, 4vw, 3rem);
+  --section-pad-y: clamp(3.5rem, 8vw, 6.5rem);
+
+  /* Carousel Tunables (mirrored/read by script.js) */
+  --carousel-card-width: clamp(180px, 21vw, 290px);
+  --carousel-card-aspect: 4 / 3;
+  --carousel-gap: clamp(20px, 2.5vw, 36px);
+
+  /* Radii & Shadows */
+  --radius-pill: 9999px;
+  --radius-media: 3px;
+  --radius-card: clamp(10px, 1.2vw, 16px);
+  --shadow-card: 0 18px 36px rgba(8, 18, 2, 0.42);
+  --shadow-media: 0 14px 30px rgba(8, 18, 2, 0.34);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --bush-w: 2560;   /* natural width in px (placeholder, replace) */
+  --bush-h: 800;    /* natural height in px (placeholder, replace) */
+  --bush-drop: 480px; /* push the bush further down; increase to lower it */
+  --color-rock-purple: #583f6a;  /* ganti dengan warna ungu bagian bawah Batu karang fix 2.png */
+}
+
+/* --------------------------------------------------------------------------
+   Base Reset & Accessibility
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-cream);
+  background-color: var(--color-body-green);
+  line-height: 1.65;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-yellow-bright);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-nav-bg);
+  color: var(--color-yellow-bright);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.container {
+  width: min(100%, calc(var(--container-max) + var(--container-pad) * 2));
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* Anchor scroll offset so fixed pill nav never overlaps headings */
+section[id],
+article[id] {
+  scroll-margin-top: clamp(4.5rem, 9vw, 6rem);
+}
+
+/* --------------------------------------------------------------------------
+   1. Fixed Pill Navigation Bar
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: clamp(0.65rem, 2vw, 1.25rem);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding-inline: clamp(0.6rem, 2.5vw, 2rem);
+  pointer-events: none;
+}
+
+.pill-nav {
+  pointer-events: auto;
+  width: min(100%, 1260px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: clamp(0.35rem, 0.9vw, 0.55rem) clamp(0.9rem, 2.4vw, 1.85rem);
+  background: rgba(10, 12, 8, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 0.35rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  transition: color 0.25s ease;
+}
+
+.nav-brand:hover {
+  color: var(--color-yellow);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.35rem, 2vw, 1.75rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: clamp(0.4rem, 1vw, 0.75rem);
+  font-size: clamp(0.8rem, 1.25vw, 1rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  right: 0.45rem;
+  bottom: 0.55rem;
+  height: 2px;
+  background: var(--color-yellow);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s var(--ease-out);
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: var(--color-yellow-bright);
+}
+
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Compact one-line nav for ultra-small phones (320px+) */
+@media (max-width: 400px) {
+  .pill-nav {
+    padding-inline: 0.75rem;
+    gap: 0.35rem;
+  }
+
+  .nav-links {
+    gap: 0.15rem;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
+    padding-inline: 0.35rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Hero Section (#home)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-sky-bottom);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-sky-top);
+  background-image: url("assets/asset/Sky_Background.png");
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1340px);
+  margin-inline: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(5.2rem, 11vh, 7.5rem) clamp(1.25rem, 4vw, 3.5rem) clamp(1.5rem, 4vh, 2.75rem);
+}
+
+.hero-top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-tag {
+  margin: 0;
+  font-size: clamp(0.72rem, 1.35vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #161c12;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.hero-tag--right {
+  text-align: right;
+}
+
+.hero-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-block: auto;
+  padding-block: clamp(1rem, 3vh, 2rem);
+}
+
+.hero-title-art {
+  width: min(88vw, 880px);
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 16px 24px rgba(15, 36, 48, 0.16));
+  animation: heroTitleFloat 5s ease-in-out infinite;
+}
+
+.js .hero-title-art {
+  animation:
+    heroFadeIn 0.9s var(--ease-out) both,
+    heroTitleFloat 5s ease-in-out 0.9s infinite;
+}
+
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
+  font-weight: 600;
+  color: #162210;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.scroll-cue:hover {
+  background-color: rgba(255, 255, 255, 0.42);
+  transform: translateY(-2px);
+}
+
+.scroll-arrow {
+  display: inline-block;
+  animation: arrowBob 1.7s ease-in-out infinite;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTitleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes arrowBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. About Section (#about)
+   -------------------------------------------------------------------------- */
+.about-section {
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    var(--color-sky-bottom) 0%,
+    var(--color-reflection-mid) 36%,
+    var(--color-reflection-bot) 74%,
+    var(--color-hill-green) 100%
+  );
+  padding-top: clamp(4.5rem, 10vw, 8.5rem);
+  padding-bottom: clamp(10rem, 23vw, 19rem);
+  overflow: visible;
+  
+}
+
+.about-scenery {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.scenery-reflection {
+  position: absolute;
+  top: -2%;
+  left: 0;
+  right: 0;
+  height: 75%;
+  background-image: url("assets/asset/PantulanBackground.png");
+  background-position: center top;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.scenery-hill-back {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2%;
+  height: 78%;
+  background-image: url("assets/asset/main%20menu%20fix_Group_8.png");
+  background-position: center bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  opacity: 0.65;
+  will-change: transform;
+}
+
+.scenery-hill-front {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2%;
+  height: 82%;
+  background-image: url("assets/asset/main%20menu%20fix_Group_7.png");
+  background-position: center bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .scenery-reflection,
+  .scenery-hill-back,
+  .scenery-hill-front {
+    background-size: cover;
+  }
+}
+
+.about-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+/* Mobile-first: photo first, centered */
+.about-portrait-wrap {
+  order: -1;
+  display: flex;
+  justify-content: center;
+}
+
+.portrait-halo {
+  position: relative;
+  width: clamp(190px, 44vw, 310px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(173, 224, 78, 0.96) 0%, rgba(154, 209, 62, 0.85) 68%, rgba(154, 209, 62, 0) 100%);
+  padding: clamp(10px, 1.5vw, 18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px rgba(32, 62, 10, 0.22);
+}
+
+.portrait-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 35%, #b8e363, #86ba37);
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about-content {
+  text-align: center;
+}
+
+.about-heading {
+  margin: 0 0 clamp(0.85rem, 2vw, 1.35rem);
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.about-text {
+  margin: 0 0 clamp(1.35rem, 3vw, 2rem);
+  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  line-height: 1.75;
+  color: var(--color-ink);
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.35);
+}
+
+.about-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-resume {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 2.15rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-resume-bg);
+  color: #ffffff;
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(42, 26, 10, 0.24);
+  transition: background-color 0.25s ease, transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+}
+
+.btn-resume:hover {
+  background-color: var(--color-resume-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(42, 26, 10, 0.3);
+}
+
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .about-portrait-wrap {
+    order: 0;
+    justify-content: flex-end;
+  }
+
+  .about-content {
+    text-align: left;
+  }
+
+  .about-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Dark bush seam covering transition from About hill into #2e530d body */
+.bush-divider--top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1px - var(--bush-drop));
+  z-index: 1;
+  pointer-events: none;
+
+  width: 100%;
+  aspect-ratio: var(--bush-w) / var(--bush-h);
+  min-height: calc(var(--bush-h) * 1px);
+
+  background-image:
+    linear-gradient(to bottom, rgba(46, 83, 13, 0) 68%, var(--color-body-green) 100%),
+    url("assets/asset/Foreground%20semak.png");
+  background-position: center bottom, center bottom;
+  background-size: 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .bush-divider--top {
+    height: clamp(140px, 34vw, 240px);
+    background-size: 100% 100%, 130% 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Portfolio Dark-Green Body & Curved Carousel (#portofolio)
+   -------------------------------------------------------------------------- */
+.portfolio-body {
+  position: relative;
+  background-color: var(--color-body-green);
+}
+
+.carousel-section {
+  position: relative;
+  z-index: 2;   /* di atas bush (z-index: 1) */
+  /* beri ruang supaya judul tidak tertimpa bush */
+  padding-top: calc(clamp(2.5rem, 6vw, 4.5rem) + var(--bush-drop));
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  overflow: hidden;
+}
+
+.section-main-title {
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.75rem);
+  text-align: center;
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  font-weight: 700;
+  color: var(--color-cream);
+  letter-spacing: 0.01em;
+}
+
+/* Progressive enhancement fallback (no JS): clean horizontal snap strip */
+.carousel-viewport {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(1.25rem, 3vw, 2.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: var(--carousel-gap);
+  padding-inline: clamp(1.25rem, 6vw, 4rem);
+}
+
+.carousel-card {
+  flex: 0 0 var(--carousel-card-width);
+  aspect-ratio: var(--carousel-card-aspect);
+  scroll-snap-align: center;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background-color: #162905;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carousel-card:hover {
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* JS-enhanced infinite curved 3D ring */
+.js .carousel-viewport {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.js .carousel-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.js .carousel-track {
+  position: relative;
+  display: block;
+  padding-inline: 0;
+  height: calc(var(--carousel-card-width) * 0.78 + clamp(2.5rem, 4vw, 4rem));
+  perspective: 1100px;
+}
+
+.js .carousel-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--carousel-card-width);
+  height: auto;
+  margin-left: calc(var(--carousel-card-width) * -0.5);
+  margin-top: calc(var(--carousel-card-width) * -0.375);
+  transition: box-shadow 0.25s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   5. Project Sections (01 to 05)
+   -------------------------------------------------------------------------- */
+.project-section {
+  position: relative;
+  padding-block: var(--section-pad-y);
+}
+
+#project-01 {
+  overflow-x: clip;
+}
+
+/* Overflow hidden on Sector 67 so left-edge Space Station clips cleanly */
+#project-02 {
+  overflow: hidden;
+}
+
+/* Prevent accidental horizontal overflow from Eden Farm bird overlaps on tiny screens */
+#project-03 {
+  overflow-x: clip;
+}
+
+.project-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(1.75rem, 4.5vw, 4rem);
+}
+
+/* Mobile-first: media always appears before text */
+.project-media {
+  order: -1;
+}
+
+.project-info {
+  position: relative;
+}
+
+.project-num {
+  display: block;
+  font-size: clamp(4.2rem, 8.5vw, 7.6rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.14);
+  margin-bottom: clamp(0.4rem, 1vw, 0.75rem);
+  user-select: none;
+}
+
+.project-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.45rem;
+  font-size: clamp(0.72rem, 1vw, 0.84rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+}
+
+.label-line {
+  display: inline-block;
+  width: clamp(26px, 3.5vw, 44px);
+  height: 2px;
+  background-color: var(--color-yellow);
+  flex-shrink: 0;
+}
+
+.project-title {
+  margin: 0 0 clamp(0.7rem, 1.5vw, 1rem);
+  font-size: clamp(1.85rem, 3.6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.project-desc {
+  margin: 0 0 clamp(1.1rem, 2.2vw, 1.55rem);
+  font-size: clamp(0.92rem, 1.22vw, 1.02rem);
+  line-height: 1.72;
+  color: var(--color-cream-muted);
+}
+
+.project-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem clamp(1.1rem, 2.5vw, 2rem);
+}
+
+.project-role {
+  font-size: clamp(0.84rem, 1.1vw, 0.94rem);
+  font-weight: 600;
+  color: var(--color-yellow);
+}
+
+/* Yellow underline-sliding links */
+.yellow-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: clamp(0.86rem, 1.12vw, 0.96rem);
+  font-weight: 600;
+  color: var(--color-yellow);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.yellow-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.55rem;
+  height: 1.5px;
+  background-color: var(--color-yellow-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--ease-out);
+}
+
+.yellow-link:hover {
+  color: var(--color-yellow-bright);
+}
+
+.yellow-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Media block: 16:9 looping video + 3 equal 16:9 thumbnails */
+.video-stage {
+  position: relative;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-media);
+  overflow: hidden;
+  background-color: #162905;
+  box-shadow: var(--shadow-media);
+}
+
+.project-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.45rem, 1.2vw, 0.85rem);
+  margin-top: clamp(0.55rem, 1.2vw, 0.9rem);
+}
+
+.thumb-btn {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-media);
+  overflow: hidden;
+  background-color: #162905;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+}
+
+.thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.32s var(--ease-out), filter 0.32s ease;
+}
+
+.thumb-btn:hover img,
+.thumb-btn:focus-visible img {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
+.media-footer-link {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.35rem;
+}
+
+/* Desktop alternating layout (>= 900px) */
+@media (min-width: 900px) {
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .project-media {
+    order: 0;
+  }
+
+  /* Media right: text left, "Play On..." right-aligned */
+  .project-section--media-right .media-footer-link {
+    justify-content: flex-end;
+  }
+
+  /* Media left: media left, text right-aligned, "Play On..." left-aligned */
+  .project-section--media-left .project-media {
+    order: -1;
+  }
+
+  .project-section--media-left .project-info {
+    text-align: right;
+  }
+
+  .project-section--media-left .project-label {
+    flex-direction: row-reverse;
+  }
+
+  .project-section--media-left .project-meta-row {
+    justify-content: flex-end;
+  }
+
+  .project-section--media-left .media-footer-link {
+    justify-content: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Project Decorations (01 Rachel, 02 Space Station, 03 Hand + Birds)
+   -------------------------------------------------------------------------- */
+
+/* 01: Rachel Idle.gif beside left text */
+.project-deco-rachel {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  padding-inline: var(--container-pad);
+  margin-bottom: -1rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.project-deco-rachel img {
+  width: clamp(190px, 21vw, 360px);
+  height: auto;
+  image-rendering: pixelated;
+}
+
+@media (min-width: 1200px) {
+  .project-deco-rachel {
+    position: absolute;
+    left: -6vw;  
+    bottom: clamp(2.5rem, 8vw, 5.5rem);
+    padding-inline: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* 02: Space Station1Tr.png partly cut off at far left edge */
+.project-deco-station {
+  position: absolute;
+  left: 0;
+  top: 65%;
+  width: clamp(190px, 21vw, 360px);
+  transform: translate(-30%, -50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.project-deco-station img {
+  width: 100%;
+  height: auto;
+  animation: stationFloat 6.5s ease-in-out infinite;
+}
+
+@media (max-width: 899px) {
+  .project-deco-station {
+    top: clamp(7rem, 24vw, 11rem);
+    width: clamp(82px, 20vw, 130px);
+    transform: translate(-34%, 0);
+  }
+}
+
+@keyframes stationFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* 03: Eden Farm pointing-hand GIF & corner birds */
+.eden-hand-gif {
+  position: absolute;
+  right: 28%;
+  bottom: 11%;
+  width: clamp(34px, 5.2vw, 82px);
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+  z-index: 4;
+  animation: handTapNudge 2.4s ease-in-out infinite;
+}
+
+.eden-bird {
+  position: absolute;
+  width: clamp(34px, 5vw, 72px);
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.eden-bird--tl {
+  top: -8%;
+  left: -4.5%;
+  animation: birdBobFlipped 2.8s ease-in-out infinite;
+}
+
+.eden-bird--br {
+  bottom: -8%;
+  right: -4.5%;
+  animation: birdBob 2.8s ease-in-out 0.4s infinite;
+}
+
+@media (max-width: 600px) {
+  .eden-bird--tl {
+    top: -7%;
+    left: -2%;
+  }
+
+  .eden-bird--br {
+    bottom: -7%;
+    right: -2%;
+  }
+}
+
+@keyframes handTapNudge {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-3px, -3px);
+  }
+}
+
+@keyframes birdBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes birdBobFlipped {
+  0%, 100% {
+    transform: scaleX(-1) translateY(0);
+  }
+  50% {
+    transform: scaleX(-1) translateY(-4px);
+  }
+}
+
+/* 04: Fiz Catcher dark bush borders */
+.project-section--bushes {
+  padding-block: clamp(6rem, 12vw, 10rem);
+  overflow: hidden;
+}
+
+.bush-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(150px, 26vw, 340px);
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("assets/asset/Foreground%20semak.png");
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.72;
+}
+
+.bush-band--top {
+  top: -2%;
+}
+
+.bush-band--bottom {
+  bottom: -2%;
+  transform: scaleY(-1);
+}
+
+@media (max-width: 767px) {
+  .bush-band {
+    background-size: 140% 100%;
+  }
+}
+
+/* 05: Crabfish Torpedo layered cyan crystals along the bottom */
+.project-section--crystals {
+  padding-bottom: clamp(7rem, 16vw, 13.5rem);
+  overflow: hidden;
+}
+
+.crystal-layers {
+  --crystal-back-size: 100%;     /* ukuran asli, tidak diperbesar */
+  --crystal-front-size: 100%;
+  --crystal-back-lift: 10vw;     /* makin besar = makin naik */
+  --crystal-front-lift: 8vw;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(320px, 38vw, 720px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crystal-back,
+.crystal-front {
+  position: absolute;
+  inset: 0;
+  background-position: center bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.crystal-back {
+  bottom: var(--crystal-back-lift);
+  background-image: url("assets/asset/batu%20transparan%20fix%203.png");
+  background-size: var(--crystal-back-size) auto;
+  opacity: 0.70;
+}
+
+.crystal-front {
+  bottom: var(--crystal-front-lift);
+  background-image: url("assets/asset/Batu%20Depan%203.png");
+  background-size: var(--crystal-front-size) auto;
+  opacity: 0.90;
+}
+
+@media (max-width: 767px) {
+  .crystal-back,
+  .crystal-front {
+    background-size: cover;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  position: relative;
+  background-color: var(--color-footer-green);
+  padding-top: clamp(3rem, 7vw, 5.5rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+  text-align: center;
+  border-radius: 24px 24px 0 0;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 24px;                       /* sama dengan radius */
+  background-color: var(--color-rock-purple);
+  z-index: -1;                        /* di belakang latar footer, hanya terlihat di sudut yang membulat */
+  pointer-events: none;
+}
+
+/* Purple rocks sitting on top of the dark footer, blending out of #2e530d */
+.footer-rocks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: clamp(46px, 9.2vw, 132px);
+  transform: translateY(calc(-100% + 1px));  /* sebelumnya translateY(-78%); sekarang tepat di atas footer */
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("assets/asset/Batu%20karang%20fix%202.png");
+  background-position: center bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .footer-rocks {
+    background-size: cover;
+  }
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 3;
+}
+
+.footer-title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(2.2rem, 5.2vw, 3.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-yellow);
+}
+
+.footer-subtitle {
+  margin: 0;
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.footer-divider {
+  width: min(100%, 460px);
+  height: 1.5px;
+  margin: clamp(1.1rem, 2.5vw, 1.75rem) auto;
+  background-color: rgba(242, 223, 116, 0.55);
+}
+
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem clamp(1.25rem, 3.5vw, 2.75rem);
+  list-style: none;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+  padding: 0;
+}
+
+.footer-contacts a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: clamp(0.88rem, 1.25vw, 1rem);
+  font-weight: 500;
+  color: var(--color-cream-muted);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-contacts a:hover {
+  color: var(--color-yellow-bright);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.social-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(242, 223, 116, 0.5);
+  color: var(--color-yellow);
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-out), background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-4px);
+  background-color: var(--color-yellow);
+  color: var(--color-footer-green);
+  border-color: var(--color-yellow);
+}
+
+/* --------------------------------------------------------------------------
+   7. Scroll Reveal Animations (ONLY active when .js is on <html>)
+   -------------------------------------------------------------------------- */
+.js .reveal-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s var(--ease-out),
+    transform 0.65s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   8. Lightbox Modal for Project Thumbnails
+   -------------------------------------------------------------------------- */
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 16, 3, 0.88);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 960px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-figure {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.lightbox-figure img {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+  background: #0e1a05;
+}
+
+.lightbox-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--color-cream);
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(12, 18, 8, 0.85);
+  color: #ffffff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: var(--color-yellow);
+  color: var(--color-footer-green);
+}
+
+.lightbox-close {
+  top: -3.2rem;
+  right: 0;
+}
+
+.lightbox-nav--prev {
+  left: clamp(-0.5rem, 1vw, 0.75rem);
+}
+
+.lightbox-nav--next {
+  right: clamp(-0.5rem, 1vw, 0.75rem);
+}
+
+@media (max-width: 600px) {
+  .lightbox-nav {
+    top: auto;
+    bottom: -3.4rem;
+  }
+
+  .lightbox-nav--prev {
+    left: 25%;
+  }
+
+  .lightbox-nav--next {
+    right: 25%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Reduced Motion Support
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-title-art,
+  .js .hero-title-art,
+  .scroll-arrow,
+  .project-deco-station img,
+  .eden-hand-gif,
+  .eden-bird--tl,
+  .eden-bird--br {
+    animation: none !important;
+  }
+
+  .js .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
